@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmergencyContactController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB.emergencyContact.controller</a> &gt; <span class="el_source">EmergencyContactController.java</span></div><h1>EmergencyContactController.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB.emergencyContact.controller;
+
+import com.vijfmusketiers.ProjectB.emergencyContact.EmergencyContact;
+import com.vijfmusketiers.ProjectB.emergencyContact.service.EmergencyContactServiceInterface;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@Validated
+<span class="nc" id="L15">public class EmergencyContactController {</span>
+
+    @Autowired
+    private EmergencyContactServiceInterface emergencyContactService;
+
+    @GetMapping(&quot;/emergencycontacts&quot;)
+    public List&lt;EmergencyContact&gt; getAllEmergencyContacts(){
+<span class="nc" id="L22">        return emergencyContactService.getAllEmergencyContacts();</span>
+    }
+
+    @GetMapping(&quot;/emergencycontacts/{emergencyContactId}&quot;)
+    public EmergencyContact getEmergencyContactById(@PathVariable Long emergencyContactId){
+<span class="nc" id="L27">        return emergencyContactService.getEmergencyContactsById(emergencyContactId);</span>
+    }
+
+    @GetMapping(&quot;/emergencycontacts/users/{userId}&quot;)
+    public List&lt;EmergencyContact&gt; getAllEmergencyContactsByUserId(@PathVariable Long userId){
+<span class="nc" id="L32">        return emergencyContactService.getAllEmergencyContactsByUserId(userId);</span>
+    }
+
+    @PutMapping(value = &quot;/emergencycontacts/{emergencyContactId}/{status}&quot;)
+    public EmergencyContact setAvailability(@PathVariable Long emergencyContactId, @PathVariable Long status) {
+<span class="nc" id="L37">        return emergencyContactService.setAvailability(emergencyContactId, status);</span>
+    }
+
+    @PutMapping(value = &quot;/emergencycontacts/users/{emergencyContactId}/{orderBy}&quot;)
+    public EmergencyContact setOrderBy(@PathVariable Long emergencyContactId, @PathVariable Long orderBy) {
+<span class="nc" id="L42">        return emergencyContactService.setOrderBy(emergencyContactId, orderBy);</span>
+    }
+
+    @PostMapping(
+            value = &quot;/emergencycontacts&quot;,
+            consumes = &quot;application/json&quot;,
+            produces = &quot;application/json&quot;)
+    public EmergencyContact createEmergencyContact(@Validated  @RequestBody EmergencyContact emergencyContact){
+<span class="nc" id="L50">        return emergencyContactService.newEmergencyContact(emergencyContact);</span>
+    }
+
+    @DeleteMapping(&quot;/emergencycontacts/{emergencyContactId}&quot;)
+    public Boolean deleteEmergencyContact(@PathVariable Long emergencyContactId){
+<span class="nc" id="L55">        return emergencyContactService.deleteEmergencyContactById(emergencyContactId);</span>
+    }
+
+//    @PutMapping(value = &quot;/emergencycontacts/attach/{emergencyContactId}/{userId}&quot;)
+//    public EmergencyContact attachUserToEmergencyContact(@PathVariable Long emergencyContactId, @PathVariable Long userId){
+//        return emergencyContactService.attachUserToEmergencyContact(emergencyContactId, userId);
+//    }
+//
+//    @PutMapping(value = &quot;/emergencycontacts/detach/{emergencyContactId}/{userId}&quot;)
+//    public EmergencyContact detachUserFromEmergencyContact(@PathVariable Long emergencyContactId, @PathVariable Long userId){
+//        return emergencyContactService.detachUserFromEmergencyContact(emergencyContactId, userId);
+//    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RollatorService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB.rollator.service</a> &gt; <span class="el_source">RollatorService.java</span></div><h1>RollatorService.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB.rollator.service;
+
+import com.vijfmusketiers.ProjectB.rollator.Rollators;
+import com.vijfmusketiers.ProjectB.rollator.exception.RollatorNotFound;
+import com.vijfmusketiers.ProjectB.rollator.repository.RollatorRepository;
+import com.vijfmusketiers.ProjectB.route.Route;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+<span class="nc" id="L14">public class RollatorService implements RollatorServiceInterface {</span>
+
+    @Autowired
+    private RollatorRepository rollatorRepository;
+
+    @Override
+    public Rollators getRollators(Long rollatorid) {
+<span class="nc" id="L21">        return rollatorRepository.getById(rollatorid);</span>
+    }
+
+    @Override
+    public List&lt;Rollators&gt; getAllRollators() {
+<span class="nc" id="L26">        return rollatorRepository.getAllByIdNotNull();</span>
+    }
+
+    @Override
+<span class="nc" id="L30">    public Rollators save(Rollators r) { return rollatorRepository.save(r); }</span>
+
+    @Override
+    public Rollators updateById(Rollators r, Long rollatorid) {
+<span class="nc" id="L34">        Rollators rollator = rollatorRepository.findDistinctById(rollatorid);</span>
+<span class="nc" id="L35">        rollator.setName(r.getName());</span>
+
+<span class="nc" id="L37">        return rollatorRepository.save(rollator);</span>
+    }
+
+    @Override
+    public Boolean deleteById(Long rollatorId) {
+<span class="nc" id="L42">        Rollators r = rollatorRepository.findById(rollatorId)</span>
+<span class="nc" id="L43">                .orElseThrow(() -&gt; new RollatorNotFound(rollatorId));</span>
+
+<span class="nc" id="L45">        return rollatorRepository.deleteDistinctById(r.getId());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

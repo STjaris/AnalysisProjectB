@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3664fa27-7b44-4919-b454-dbf5bf16c520" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/vijfmusketiers/ProjectB/ProjectBApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/vijfmusketiers/ProjectB/ProjectBApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +70,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProjectBApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="ProjectB" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.vijfmusketiers.ProjectB.ProjectBApplication" />
@@ -145,7 +156,7 @@
       <workItem from="1609683828668" duration="618000" />
       <workItem from="1609767116341" duration="2304000" />
       <workItem from="1609849735941" duration="10000" />
-      <workItem from="1609859979698" duration="1195000" />
+      <workItem from="1609859979698" duration="2121000" />
     </task>
     <servers />
   </component>

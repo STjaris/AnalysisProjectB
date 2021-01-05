@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Receiver.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB.messageQueue</a> &gt; <span class="el_source">Receiver.java</span></div><h1>Receiver.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB.messageQueue;
+
+import com.vijfmusketiers.ProjectB.emergencyContact.EmergencyContact;
+import com.vijfmusketiers.ProjectB.emergencyContact.service.EmergencyContactServiceInterface;
+import com.vijfmusketiers.ProjectB.messageQueue.emergency.service.EmergencyService;
+import net.minidev.json.JSONObject;
+import net.minidev.json.parser.JSONParser;
+import net.minidev.json.parser.ParseException;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
+
+@Component
+public class Receiver {
+<span class="nc" id="L17">    private CountDownLatch latch = new CountDownLatch(1);</span>
+
+<span class="nc" id="L19">    private final EmergencyService emergencyService = new EmergencyService();</span>
+    private final EmergencyContactServiceInterface emergencyContactServiceInterface;
+
+<span class="nc" id="L22">    public Receiver(EmergencyContactServiceInterface emergencyContactServiceInterface) {</span>
+<span class="nc" id="L23">        this.emergencyContactServiceInterface = emergencyContactServiceInterface;</span>
+<span class="nc" id="L24">    }</span>
+
+    @RabbitListener(queues = &quot;emergency&quot;)
+    public void receiveMessage(byte[] message) throws ParseException {
+<span class="nc" id="L28">        JSONObject messageInJson = this.ByteToJson(message);</span>
+<span class="nc" id="L29">        byte[] emergency = messageInJson.getAsString(&quot;emergency&quot;).getBytes();</span>
+        // Get user ID
+<span class="nc" id="L31">        String userID = this.ByteToJson(emergency).getAsString(&quot;user_id&quot;);</span>
+
+        // Get Message
+<span class="nc" id="L34">        String messageSMS = this.ByteToJson(emergency).getAsString(&quot;message&quot;);</span>
+
+        // Get getSMSTrueOrFalse
+<span class="nc" id="L37">        boolean sendSMS = Boolean.parseBoolean(this.ByteToJson(emergency).getAsString(&quot;sendSMS&quot;));</span>
+
+<span class="nc" id="L39">        System.out.println(sendSMS);</span>
+
+        // Get Route coords
+<span class="nc" id="L42">        byte[] route = this.ByteToJson(emergency).getAsString(&quot;route&quot;).getBytes();</span>
+<span class="nc" id="L43">        String yCo = this.ByteToJson(route).getAsString(&quot;yCo&quot;);</span>
+<span class="nc" id="L44">        String xCo = this.ByteToJson(route).getAsString(&quot;xCo&quot;);</span>
+
+<span class="nc" id="L46">        List&lt;EmergencyContact&gt; ECLst = emergencyContactServiceInterface.getAllEmergencyContactsByUserId(Long.parseLong(userID));</span>
+<span class="nc" id="L47">        ECLst.sort(Comparator.comparing(EmergencyContact::getOrderBy));</span>
+
+<span class="nc" id="L49">        int i = 0;</span>
+<span class="nc bnc" id="L50" title="All 2 branches missed.">        for (EmergencyContact ec : ECLst) {</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">            if(ec.getAvailable() == 1) {</span>
+<span class="nc" id="L52">                i++;</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">                if (ec.getOrderBy() &lt;= i || i == 1) {</span>
+                    // Get EmergencyContact from the User.
+<span class="nc" id="L55">                    String phoneNumber = ec.getPhoneNumber();</span>
+
+                    // Get client name
+<span class="nc" id="L58">                    String client = String.format(&quot;%S %S&quot;, ECLst.get(i).getUser().getFirstName(), ECLst.get(i).getUser().getLastName());</span>
+
+<span class="nc" id="L60">                    System.out.println(String.format(&quot;Received &lt;%s&gt;&quot;, messageInJson));</span>
+
+                    // send sms
+<span class="nc" id="L63">                    emergencyService.send(client, phoneNumber, messageSMS, xCo, yCo, sendSMS);</span>
+<span class="nc" id="L64">                    latch.countDown();</span>
+<span class="nc" id="L65">                    break;</span>
+                }
+            }
+<span class="nc" id="L68">        }</span>
+<span class="nc" id="L69">    }</span>
+
+
+    public CountDownLatch getLatch() {
+<span class="nc" id="L73">        return latch;</span>
+    }
+
+    public JSONObject ByteToJson(byte[] message) throws ParseException {
+<span class="nc" id="L77">        JSONParser parser = new JSONParser(JSONParser.MODE_JSON_SIMPLE);</span>
+<span class="nc" id="L78">        return (JSONObject) parser.parse(new String(message));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

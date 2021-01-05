@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB.route.controller</a> &gt; <span class="el_source">RouteController.java</span></div><h1>RouteController.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB.route.controller;
+
+
+import com.vijfmusketiers.ProjectB.authentication.user.User;
+import com.vijfmusketiers.ProjectB.authentication.user.UserDto;
+import com.vijfmusketiers.ProjectB.authentication.user.repository.UserRepository;
+import com.vijfmusketiers.ProjectB.breadcrumbs.Breadcrumbs;
+import com.vijfmusketiers.ProjectB.breadcrumbs.repository.BreadcrumbRepository;
+import com.vijfmusketiers.ProjectB.route.Route;
+import com.vijfmusketiers.ProjectB.route.RouteDto;
+import com.vijfmusketiers.ProjectB.route.service.RouteServiceInterface;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@Validated
+public class RouteController {
+
+    private final RouteServiceInterface routeServiceInterface;
+    private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
+    private final BreadcrumbRepository breadCrumbsRepository;
+
+    @Autowired
+<span class="nc" id="L29">    public RouteController(RouteServiceInterface routeServiceInterface, UserRepository userRepository, ModelMapper modelMapper, BreadcrumbRepository breadCrumbsRepository) {</span>
+<span class="nc" id="L30">        this.routeServiceInterface = routeServiceInterface;</span>
+<span class="nc" id="L31">        this.userRepository = userRepository;</span>
+<span class="nc" id="L32">        this.modelMapper = modelMapper;</span>
+<span class="nc" id="L33">        this.breadCrumbsRepository = breadCrumbsRepository;</span>
+<span class="nc" id="L34">    }</span>
+
+    @GetMapping(&quot;/routes&quot;)
+    public Map getAllRoutes() {
+<span class="nc" id="L38">        return routeServiceInterface.getAllRoutes();</span>
+    }
+
+    @GetMapping(&quot;/routenames&quot;)
+    public Map getAllnamesAndId() {
+<span class="nc" id="L43">        return routeServiceInterface.getAllnamesAndId();</span>
+    }
+
+    @GetMapping(&quot;/routesonly&quot;)
+    public Map getAllroutesOnly() {
+<span class="nc" id="L48">        return routeServiceInterface.getAllroutesOnly();</span>
+    }
+
+    @GetMapping(&quot;routes/{routeid}&quot;)
+    public Route getRoute(@PathVariable Long routeid) {
+<span class="nc" id="L53">        return routeServiceInterface.getRoute(routeid);</span>
+    }
+
+//    @GetMapping(&quot;routesbyuser&quot;)
+//    public Map getRouteByUsers(Principal principal) {
+//        User user = userRepository.findByEmail(principal.getName());
+//        return routeServiceInterface.getRoutesByUsers(user.getId());
+//    }
+
+    @GetMapping(&quot;routesbyuser/{usersid}&quot;)
+    public Map getRouteByUsers(@PathVariable Long usersid) {
+<span class="nc" id="L64">        return routeServiceInterface.getRoutesByUsers(usersid);</span>
+    }
+
+    @PostMapping(
+            value = &quot;/routes&quot;,
+            consumes = &quot;application/json&quot;,
+            produces = &quot;application/json&quot;)
+    public Route saveRoute(@RequestBody Route route) {
+<span class="nc" id="L72">        return routeServiceInterface.save(route);</span>
+    }
+
+    @PostMapping(
+            value = &quot;/routes/{userid}&quot;,
+            consumes = &quot;application/json&quot;,
+            produces = &quot;application/json&quot;)
+    public Route saveRouteWithUser(@RequestBody Route route, @PathVariable Long userid) {
+<span class="nc" id="L80">        route.setUser(userRepository.findByid(userid));</span>
+<span class="nc" id="L81">        routeServiceInterface.save(route);</span>
+
+        //User terug geven in vorm van userDto
+<span class="nc" id="L84">        UserDto userDto = modelMapper.map(userRepository.findByid(userid), UserDto.class);</span>
+<span class="nc" id="L85">        User user = modelMapper.map(userDto, User.class);</span>
+<span class="nc" id="L86">        route.setUser(user);</span>
+<span class="nc" id="L87">        route.getUser().setId(userid);</span>
+
+        //Opslaan van de breadcrumbs
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        for (Breadcrumbs bc : route.getRoute()) {</span>
+<span class="nc" id="L91">            bc.setRoute(route);</span>
+<span class="nc" id="L92">            breadCrumbsRepository.save(bc);</span>
+<span class="nc" id="L93">        }</span>
+<span class="nc" id="L94">        return route;</span>
+    }
+
+    @PutMapping(&quot;/routes/{routeid}&quot;)
+    public RouteDto updateRoute(@PathVariable Long routeid, @RequestBody Route route) {
+<span class="nc" id="L99">        return modelMapper.map(routeServiceInterface.updateById(route, routeid), RouteDto.class);</span>
+    }
+
+    @DeleteMapping(&quot;/routes/{routeid}&quot;)
+    public Boolean deleteRoute(@PathVariable Long routeid) {
+<span class="nc" id="L104">        return routeServiceInterface.deleteById(routeid);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

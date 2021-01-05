@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProjectBApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB</a> &gt; <span class="el_source">ProjectBApplication.java</span></div><h1>ProjectBApplication.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB;
+
+import com.vijfmusketiers.ProjectB.messageQueue.Receiver;
+import org.modelmapper.ModelMapper;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
+import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+<span class="nc" id="L18">public class ProjectBApplication {</span>
+    public static final String topicExchangeName = &quot;projectb-exchange&quot;;
+    static final String queueName = &quot;emergency&quot;;
+
+    @Bean
+    public ModelMapper modelMapper() {
+<span class="nc" id="L24">        return new ModelMapper();</span>
+    }
+
+    @Bean
+    Queue queue() {
+<span class="nc" id="L29">        return new Queue(queueName, false);</span>
+    }
+
+    @Bean
+    TopicExchange exchange() {
+<span class="nc" id="L34">        return new TopicExchange(topicExchangeName);</span>
+    }
+
+    @Bean
+    Binding binding(Queue queue, TopicExchange exchange) {
+<span class="nc" id="L39">        return BindingBuilder.bind(queue).to(exchange).with(&quot;#&quot;);</span>
+    }
+
+    @Bean
+    SimpleMessageListenerContainer container(ConnectionFactory connectionFactory,
+                                             MessageListenerAdapter listenerAdapter) {
+<span class="nc" id="L45">        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();</span>
+<span class="nc" id="L46">        container.setConnectionFactory(connectionFactory);</span>
+<span class="nc" id="L47">        container.setQueueNames(queueName);</span>
+<span class="nc" id="L48">        container.setMessageListener(listenerAdapter);</span>
+<span class="nc" id="L49">        return container;</span>
+    }
+
+    @Bean
+    MessageListenerAdapter listenerAdapter(Receiver receiver) {
+<span class="nc" id="L54">        return new MessageListenerAdapter(receiver, &quot;receiveMessage&quot;);</span>
+    }
+
+    public static void main(String[] args) {
+<span class="nc" id="L58">        SpringApplication.run(ProjectBApplication.class, args);</span>
+<span class="nc" id="L59">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

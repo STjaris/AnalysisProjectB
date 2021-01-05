@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RollatorController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB.rollator.controller</a> &gt; <span class="el_source">RollatorController.java</span></div><h1>RollatorController.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB.rollator.controller;
+
+import com.vijfmusketiers.ProjectB.rollator.Rollators;
+import com.vijfmusketiers.ProjectB.rollator.RollatorsDto;
+import com.vijfmusketiers.ProjectB.rollator.service.RollatorServiceInterface;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class RollatorController {
+
+    private final RollatorServiceInterface rollatorServiceInterface;
+    private final ModelMapper modelMapper;
+
+    @Autowired
+<span class="nc" id="L19">    public RollatorController(RollatorServiceInterface rollatorServiceInterface, ModelMapper modelMapper) {</span>
+<span class="nc" id="L20">        this.rollatorServiceInterface = rollatorServiceInterface;</span>
+<span class="nc" id="L21">        this.modelMapper = modelMapper;</span>
+<span class="nc" id="L22">    }</span>
+
+    @GetMapping(&quot;rollators/{rollatorid}&quot;)
+    public RollatorsDto getRollator(@PathVariable Long rollatorid) {
+<span class="nc" id="L26">        return modelMapper.map(rollatorServiceInterface.getRollators(rollatorid), RollatorsDto.class);</span>
+    }
+
+    @GetMapping(&quot;rollators&quot;)
+    public List&lt;Rollators&gt; getAllRollators() {
+<span class="nc" id="L31">        return rollatorServiceInterface.getAllRollators();</span>
+    }
+
+    @PostMapping(
+            value = &quot;/rollators&quot;,
+            consumes = &quot;application/json&quot;,
+            produces = &quot;application/json&quot;)
+    public Rollators saveRollators(@RequestBody Rollators rollators) {
+<span class="nc" id="L39">        return rollatorServiceInterface.save(rollators);</span>
+    }
+
+    @PutMapping(&quot;/rollators/{rollatorid}&quot;)
+    public Rollators updateRollators(@PathVariable Long rollatorid, @RequestBody Rollators rollators){
+
+<span class="nc" id="L45">        return rollatorServiceInterface.updateById(rollators, rollatorid);</span>
+    }
+
+    @DeleteMapping(&quot;/rollators/{rollatorId}&quot;)
+    public Boolean deleteRollator(@PathVariable Long rollatorId) {
+<span class="nc" id="L50">        return rollatorServiceInterface.deleteById(rollatorId);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

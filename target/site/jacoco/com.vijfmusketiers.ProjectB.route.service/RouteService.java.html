@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RouteService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">ProjectB</a> &gt; <a href="index.source.html" class="el_package">com.vijfmusketiers.ProjectB.route.service</a> &gt; <span class="el_source">RouteService.java</span></div><h1>RouteService.java</h1><pre class="source lang-java linenums">package com.vijfmusketiers.ProjectB.route.service;
+
+import com.vijfmusketiers.ProjectB.authentication.user.User;
+import com.vijfmusketiers.ProjectB.authentication.user.UserDto;
+import com.vijfmusketiers.ProjectB.breadcrumbs.repository.BreadcrumbRepository;
+import com.vijfmusketiers.ProjectB.rollator.service.RollatorServiceInterface;
+import com.vijfmusketiers.ProjectB.route.Route;
+import com.vijfmusketiers.ProjectB.route.RouteDto;
+import com.vijfmusketiers.ProjectB.route.repository.RouteRepository;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class RouteService implements RouteServiceInterface {
+
+    private ModelMapper modelMapper;
+    private RouteRepository routeRepository;
+    private BreadcrumbRepository breadcrumbRepository;
+    private RollatorServiceInterface rollatorServiceInterface;
+
+    @Autowired
+<span class="nc" id="L27">    public RouteService(RouteRepository routeRepository, BreadcrumbRepository breadcrumbRepository, RollatorServiceInterface rollatorServiceInterface, ModelMapper modelMapper) {</span>
+<span class="nc" id="L28">        this.routeRepository = routeRepository;</span>
+<span class="nc" id="L29">        this.breadcrumbRepository = breadcrumbRepository;</span>
+<span class="nc" id="L30">        this.rollatorServiceInterface = rollatorServiceInterface;</span>
+<span class="nc" id="L31">        this.modelMapper = modelMapper;</span>
+<span class="nc" id="L32">    }</span>
+
+    @Override
+    public Map getAllRoutes() {
+
+<span class="nc" id="L37">        List&lt;Route&gt; l = routeRepository.findAll();</span>
+<span class="nc" id="L38">        Map&lt;Long, Route&gt; m = new HashMap();</span>
+
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        for (Route route : l) {</span>
+            try {
+<span class="nc" id="L42">                UserDto userDto = modelMapper.map(route.getUser(), UserDto.class);</span>
+<span class="nc" id="L43">                User user = modelMapper.map(userDto, User.class);</span>
+<span class="nc" id="L44">                route.setUser(user);</span>
+
+<span class="nc" id="L46">                m.put(route.getId(), route);</span>
+            }
+<span class="nc" id="L48">            catch(Exception e) { }</span>
+<span class="nc" id="L49">        }</span>
+<span class="nc" id="L50">        return m;</span>
+    }
+
+    @Override
+    public Map getAllroutesOnly() {
+
+<span class="nc" id="L56">        List&lt;Route&gt; l = routeRepository.findAll();</span>
+<span class="nc" id="L57">        Map&lt;Long, RouteDto&gt; m = new HashMap();</span>
+
+<span class="nc bnc" id="L59" title="All 2 branches missed.">        for (Route route : l) {</span>
+
+<span class="nc" id="L61">            RouteDto routeDto = modelMapper.map(route, RouteDto.class);</span>
+<span class="nc" id="L62">            m.put(route.getId(), routeDto);</span>
+<span class="nc" id="L63">        }</span>
+<span class="nc" id="L64">        return m;</span>
+    }
+
+    @Override
+    public Map getRoutesByUsers(Long usersid) {
+<span class="nc" id="L69">        List&lt;Route&gt; l = routeRepository.findAllByUserId(usersid);</span>
+<span class="nc" id="L70">        Map&lt;Long, Route&gt; m = new HashMap();</span>
+
+<span class="nc bnc" id="L72" title="All 2 branches missed.">        for (Route route : l) {</span>
+<span class="nc" id="L73">            UserDto userDto = modelMapper.map(route.getUser(), UserDto.class);</span>
+<span class="nc" id="L74">            User user = modelMapper.map(userDto, User.class);</span>
+<span class="nc" id="L75">            route.setUser(user);</span>
+<span class="nc" id="L76">            m.put(route.getId(), route);</span>
+<span class="nc" id="L77">        }</span>
+
+<span class="nc" id="L79">        return m;</span>
+    }
+
+    public Map getAllnamesAndId() {
+
+<span class="nc" id="L84">        List&lt;Route&gt; l = routeRepository.findAll();</span>
+<span class="nc" id="L85">        Map&lt;Long, String&gt; m = new HashMap();</span>
+
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        for (Route route : l) {</span>
+<span class="nc" id="L88">            UserDto userDto = modelMapper.map(route.getUser(), UserDto.class);</span>
+<span class="nc" id="L89">            User user = modelMapper.map(userDto, User.class);</span>
+<span class="nc" id="L90">            route.setUser(user);</span>
+
+<span class="nc" id="L92">            m.put(route.getId(), route.getName());</span>
+<span class="nc" id="L93">        }</span>
+
+<span class="nc" id="L95">        return m;</span>
+    }
+
+
+    @Override
+    public Route getRoute(Long routeid) {
+<span class="nc" id="L101">        Route route = routeRepository.getById(routeid);</span>
+<span class="nc" id="L102">        UserDto userDto = modelMapper.map(route.getUser(), UserDto.class);</span>
+<span class="nc" id="L103">        User user = modelMapper.map(userDto, User.class);</span>
+<span class="nc" id="L104">        route.setUser(user);</span>
+
+<span class="nc" id="L106">        return route;</span>
+    }
+
+    @Override
+    public Route save(Route r) {
+<span class="nc" id="L111">        return routeRepository.save(r);</span>
+    }
+
+    @Override
+    public Route updateById(Route r, Long routeid) {
+
+<span class="nc" id="L117">        Route route  = routeRepository.findDistinctById(routeid);</span>
+
+<span class="nc" id="L119">        route.setName(r.getName());</span>
+<span class="nc" id="L120">        route.setRoute(r.getRoute());</span>
+
+
+<span class="nc" id="L123">        return routeRepository.save(route);</span>
+    }
+
+    @Override
+    public Boolean deleteById(Long routeid) {
+
+<span class="nc" id="L129">        Route r = routeRepository.findDistinctById(routeid);</span>
+<span class="nc" id="L130">        breadcrumbRepository.deleteDistinctByRoute(r);</span>
+
+<span class="nc" id="L132">        return routeRepository.deleteDistinctById(routeid);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

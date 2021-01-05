@@ -28,7 +28,7 @@ function overallSave(){
     alert("hjdsbfg jhbdfhjbdfgjhdfbghjdfbgkjhfd");
 
 
-    globalElementArray[5] = globalBooleanSelection;
+    globalElementArray[6] = globalBooleanSelection;
 
 
     console.log(globalElementArray.toString());
@@ -48,7 +48,8 @@ let jsonFormat =
     "\"lastName\" : \"" + globalElementArray[2] + "\", " +
     "\"email\" : \"" + globalElementArray[3] + "\", " +
     "\"phoneNumber\" : " + globalElementArray[4] + ", " +
-    "\"available\" : " + globalElementArray[5] + "}";
+    "\"available\" : " + globalElementArray[5] + "}"+
+    "\"orderBy\" : " + globalElementArray[6] + "}";
 
 
 console.log(jsonFormat);
@@ -96,9 +97,6 @@ function getNoodcontacten(value) {
 
         for (let noodcontact of noodcontacten) {
 
-            console.log(">>>>>>>>>>>>>>>>>>>" + noodcontact.firstName);
-
-
             //CREATE HTML ELEMENTS
             var tr = document.createElement("tr");
 
@@ -117,6 +115,9 @@ function getNoodcontacten(value) {
             var tdAvailability = document.createElement("td");
             var bAvailability = document.createElement("b");
 
+            var tdOrderBy = document.createElement("td");
+            var bOrderBy = document.createElement("b");
+
 
             //    SET ELEMENT ATTRIBUTES
             tdFirstName.setAttribute("scope", "row");
@@ -127,6 +128,7 @@ function getNoodcontacten(value) {
             bEmail.innerHTML = noodcontact.email;
             bPhoneNumber.innerHTML = noodcontact.phoneNumber;
             bAvailability.innerHTML = noodcontact.available;
+            bOrderBy.innerHTML = noodcontact.orderBy;
 
 
             //   APPEND INTO ELEMENT
@@ -135,18 +137,18 @@ function getNoodcontacten(value) {
             tdEmail.appendChild(bEmail);
             tdPhoneNumber.appendChild(bPhoneNumber);
             tdAvailability.appendChild(bAvailability);
+            tdOrderBy.appendChild(bOrderBy);
 
             //    APPEND INTO HTML
             tr.appendChild(tdFirstName);
             tr.appendChild(tdLastName);
             tr.appendChild(tdEmail);
             tr.appendChild(tdPhoneNumber);
-            tr.appendChild(tdAvailability)
+            tr.appendChild(tdAvailability);
+            tr.appendChild(tdOrderBy);
 
-            console.log(tr);
-            document.querySelector("#noodcontactenTable").appendChild(tr);
+        document.querySelector("#noodcontactenTable").appendChild(tr);
         }
-
     });
 }
 
