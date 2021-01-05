@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3664fa27-7b44-4919-b454-dbf5bf16c520" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/manual.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/manual.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codecov.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +157,7 @@
       <workItem from="1609683828668" duration="618000" />
       <workItem from="1609767116341" duration="2304000" />
       <workItem from="1609849735941" duration="10000" />
-      <workItem from="1609859979698" duration="2121000" />
+      <workItem from="1609859979698" duration="2431000" />
     </task>
     <servers />
   </component>
