@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3664fa27-7b44-4919-b454-dbf5bf16c520" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/vijfmusketiers/ProjectB/ProjectBApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/vijfmusketiers/ProjectB/ProjectBApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="CSS File" />
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Users\Soerano\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bR7wOHPOSawJJATQjb0Sl3rX2V" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Soerano\Documents\GitHub\projectb\src\main\resources\public\vendor" />
+      <recent name="C:\Users\Soerano\Documents\GitHub\projectb\src\main\resources\public" />
+      <recent name="C:\Users\Soerano\Documents\GitHub\projectb\src\main\resources\public\html" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Soerano\Documents\GitHub\projectb\src\main\resources" />
+      <recent name="C:\Users\Soerano\Documents\GitHub\projectb\src\main\resources\public\js" />
+      <recent name="C:\Users\Soerano\Documents\GitHub\projectb\src\main\resources\public" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="ProjectBApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="ProjectB" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.vijfmusketiers.ProjectB.ProjectBApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3664fa27-7b44-4919-b454-dbf5bf16c520" name="Default Changelist" comment="" />
+      <created>1588583289261</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588583289261</updated>
+      <workItem from="1588583291636" duration="3011000" />
+      <workItem from="1588676279747" duration="2597000" />
+      <workItem from="1588678918515" duration="7784000" />
+      <workItem from="1588762900151" duration="10618000" />
+      <workItem from="1588843965751" duration="831000" />
+      <workItem from="1589188194287" duration="10831000" />
+      <workItem from="1589289627190" duration="4815000" />
+      <workItem from="1589307492401" duration="548000" />
+      <workItem from="1589309056953" duration="34000" />
+      <workItem from="1589360799849" duration="7890000" />
+      <workItem from="1589445832504" duration="192000" />
+      <workItem from="1589446093076" duration="9166000" />
+      <workItem from="1589491627387" duration="1429000" />
+      <workItem from="1589547282790" duration="5304000" />
+      <workItem from="1589713685714" duration="658000" />
+      <workItem from="1589792475039" duration="11635000" />
+      <workItem from="1589883776917" duration="5602000" />
+      <workItem from="1589965218000" duration="11166000" />
+      <workItem from="1590058751272" duration="7534000" />
+      <workItem from="1590148094536" duration="11574000" />
+      <workItem from="1590397559649" duration="8594000" />
+      <workItem from="1590494236298" duration="10649000" />
+      <workItem from="1590507991245" duration="3000" />
+      <workItem from="1590570267929" duration="2296000" />
+      <workItem from="1590657044950" duration="12483000" />
+      <workItem from="1590749941215" duration="9382000" />
+      <workItem from="1590845179871" duration="8679000" />
+      <workItem from="1591011000384" duration="36000" />
+      <workItem from="1591088728838" duration="1024000" />
+      <workItem from="1591180668845" duration="975000" />
+      <workItem from="1591271668754" duration="1812000" />
+      <workItem from="1592146232579" duration="499000" />
+      <workItem from="1601556128837" duration="2604000" />
+      <workItem from="1601633703791" duration="20000" />
+      <workItem from="1601978365494" duration="1073000" />
+      <workItem from="1601984354922" duration="616000" />
+      <workItem from="1605532239665" duration="1894000" />
+      <workItem from="1605541438711" duration="730000" />
+      <workItem from="1605544849848" duration="11000" />
+      <workItem from="1605776817529" duration="787000" />
+      <workItem from="1606307111457" duration="5945000" />
+      <workItem from="1606487959906" duration="623000" />
+      <workItem from="1606729704979" duration="5020000" />
+      <workItem from="1606826342223" duration="716000" />
+      <workItem from="1607339675490" duration="619000" />
+      <workItem from="1607349256515" duration="1923000" />
+      <workItem from="1607517739820" duration="2409000" />
+      <workItem from="1607784371223" duration="3714000" />
+      <workItem from="1607788496967" duration="3498000" />
+      <workItem from="1607873379800" duration="630000" />
+      <workItem from="1607935916366" duration="1208000" />
+      <workItem from="1608558782065" duration="1120000" />
+      <workItem from="1609593810095" duration="1272000" />
+      <workItem from="1609683828668" duration="618000" />
+      <workItem from="1609767116341" duration="2304000" />
+      <workItem from="1609849735941" duration="10000" />
+      <workItem from="1609859979698" duration="1195000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
