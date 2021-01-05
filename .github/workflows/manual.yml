@@ -41,14 +41,6 @@ jobs:
           flags: unittests
           name: codecov-umbrella
           fail_ci_if_error: true
-            
-      - name: Build_and_Push_Docker_Image
-        uses: mr-smithers-excellent/docker-build-push@v4
-        with:
-          image: soeranotjaris/back_end_programming
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
         
       - name: Cache SonarCloud packages
         uses: actions/cache@v1
