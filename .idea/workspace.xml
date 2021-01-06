@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3664fa27-7b44-4919-b454-dbf5bf16c520" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/manual.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/manual.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +25,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Users\Soerano\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProjectId" id="1bR7wOHPOSawJJATQjb0Sl3rX2V" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -146,6 +139,7 @@
       <workItem from="1609767116341" duration="2304000" />
       <workItem from="1609849735941" duration="10000" />
       <workItem from="1609859979698" duration="3308000" />
+      <workItem from="1609943424720" duration="109000" />
     </task>
     <servers />
   </component>
